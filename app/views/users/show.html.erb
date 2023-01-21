@@ -1,0 +1,15 @@
+<% events = @user.created_events %>
+
+<% if events.exists? %>
+  <p>Your events: </p>
+  <% events.each do |event| %>
+    <p>Name: <%= event.name %></p>
+    <p>Description: <%= event.description %></p>
+    <p>Location: <%= event.location %></p>
+    <p>Date: <%= event.date %></p>
+    <p>Time: <%= event.time %></p>
+    <br />
+  <% end %>
+<% else %>
+  <p>You haven't created any events.</p>
+<% end %>
