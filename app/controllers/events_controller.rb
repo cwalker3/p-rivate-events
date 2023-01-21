@@ -14,9 +14,11 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event = Event.includes(:creator).find(params[:id])
   end
 
   def index
+    @events = Event.all.includes(:creator)
   end
 
   def edit
