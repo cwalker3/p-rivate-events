@@ -18,7 +18,8 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all.includes(:creator, :attendees)
+    @upcoming_events = Event.upcoming.includes(:creator, :attendees)
+    @past_events = Event.past.includes(:creator, :attendees)
   end
 
   def edit
@@ -33,6 +34,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :description, :location, :date, :time)
+    params.require(:event).permit(:name, :description, :location, :date)
   end
 end

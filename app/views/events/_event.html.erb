@@ -11,16 +11,13 @@
     <b>Date:</b> <%= event.date %>
   </p>
   <p>
-    <b>Time:</b> <%= event.time %>
-  </p>
-  <p>
     <b>Creator:</b> <%= event.creator.first_name + ' ' + event.creator.last_name %>
   </p>
   <p>
   <% unless current_page?(event_path(event.id))%>
     <a href="/events/<%= event.id %>">View Event</a>
   <% end %>
-  <% if user_signed_in? %>
+  <% if user_signed_in? && event.date > Date.today %>
     <% if event.attendees.include?(current_user) %>
           <%= form_with url: '/event_attendees', method: :delete do |form| %>
         <%= form.hidden_field :attendee_id, value: current_user.id %>

@@ -8,9 +8,17 @@
 <% end %>
 
 <% if @attended_events.exists? %>
-  <h2>Your attended events: </h2>
+  <h2>Your upcoming attended events: </h2>
   <% @attended_events.each do |event| %>
-    <%= render partial: 'events/event', locals: { event: event } %>
+    <% if event.date > Date.today %>
+      <%= render partial: 'events/event', locals: { event: event } %>
+    <% end %>
+  <% end %>
+  <h2>Your past attended events: </h2>
+  <% @attended_events.each do |event| %>
+    <% if event.date < Date.today %>
+      <%= render partial: 'events/event', locals: { event: event } %>
+    <% end %>
   <% end %>
 <% else %>
   <p>You aren't attending any events.</p>

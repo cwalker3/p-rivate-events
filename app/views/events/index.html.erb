@@ -1,8 +1,8 @@
-<h1>Events: </h1>
-<% @events.each do |event| %>
+<h1>Upcoming Events:</h1>
+<% @upcoming_events.each do |event| %>
   <%= render partial: 'event', locals: { event: event } %>
-  <p>
-    <br />
-    <br />
-  </p>
+<% end %>
+<h1>Past Events:</h1>
+<% @past_events.each do |event| %>
+  <%= render partial: 'event', locals: { event: event } %>
 <% end %>
