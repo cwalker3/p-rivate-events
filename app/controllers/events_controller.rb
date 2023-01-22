@@ -23,12 +23,27 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @event = Event.find(params[:id])
   end
 
   def update
+    @event = Event.find(params[:id])
+
+    if @event.update(event_params)
+      redirect_to event_path(@event.id), notice: 'Successfully edited event.'
+    else
+      render :edit, status: :unproccessable_entity
+    end
   end
 
   def destroy
+    @event = Event.find(params[:id])
+
+    if @event.destroy
+      redirect_to root_path, notice: 'Successfully deleted event.'
+    else
+      redirect_back fallback_location: root_path, status: :unproccessable_entity
+    end
   end
 
   private

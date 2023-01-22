@@ -31,6 +31,16 @@
         <%= form.submit value: 'Join Event' %>
       <% end %>
     <% end %>
+    <% if event.creator == current_user %>
+      <%= form_with url: event_path(event.id), method: :delete do |form| %>
+        <%= form.hidden_field :event_id, value: event.id %>
+        <%= form.submit value: 'Delete Event'%>
+      <% end %>
+      <%= form_with url: edit_event_path(event.id), method: :get do |form| %>
+        <%= form.hidden_field :event_id, value: event.id %>
+        <%= form.submit value: 'Edit Event'%>
+      <% end %>
+    <% end %>
   <% end %>
   <br>
   <br>
