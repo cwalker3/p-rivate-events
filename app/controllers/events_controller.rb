@@ -14,11 +14,11 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.includes(:creator).find(params[:id])
+    @event = Event.includes(:creator, :attendees).find(params[:id])
   end
 
   def index
-    @events = Event.all.includes(:creator)
+    @events = Event.all.includes(:creator, :attendees)
   end
 
   def edit

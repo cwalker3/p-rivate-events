@@ -2,11 +2,19 @@
   <h2>Your created events: </h2>
   <% @created_events.each do |event| %>
     <%= render partial: 'events/event', locals: { event: event } %>
-    <p>
-    <a href="">Edit Event</a>
-    <br /><br />
-    </p>
   <% end %>
 <% else %>
   <p>You haven't created any events.</p>
 <% end %>
+
+<% if @attended_events.exists? %>
+  <h2>Your attended events: </h2>
+  <% @attended_events.each do |event| %>
+    <%= render partial: 'events/event', locals: { event: event } %>
+  <% end %>
+<% else %>
+  <p>You aren't attending any events.</p>
+<% end %>
+
+
+
